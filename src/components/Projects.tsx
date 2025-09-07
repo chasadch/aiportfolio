@@ -106,319 +106,117 @@ export function Projects() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <motion.h2
-            className="text-6xl md:text-7xl font-black text-gradient mb-6"
+            className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-wider"
             initial={{ scale: 0.8 }}
             animate={isInView ? { scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Featured Projects
+            FEATURED PROJECTS
           </motion.h2>
           
           <motion.p
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-lg text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            A showcase of innovative AI/ML solutions that push the boundaries of technology and user experience
+            Here are some of the selected projects that showcase my passion for AI/ML development and intelligent automation.
           </motion.p>
-          
-          <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-6"
-            initial={{ width: 0 }}
-            animate={isInView ? { width: 96 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          />
         </motion.div>
 
         {/* Projects grid */}
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="space-y-16 max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 80, rotateX: 10 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ 
                 duration: 0.8, 
-                delay: index * 0.2,
-                type: "spring",
-                stiffness: 100
+                delay: index * 0.2
               }}
-              whileHover={{ 
-                y: -15, 
-                scale: 1.03,
-                boxShadow: "0 30px 60px rgba(0,0,0,0.3)",
-                rotateY: 2
-              }}
-              onHoverStart={() => setActiveProject(index)}
-              className="relative group perspective-1000"
+              className="grid lg:grid-cols-2 gap-8 items-center"
             >
-              {/* Card background with gradient border */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 p-0.5">
-                <div className="w-full h-full glass rounded-3xl" />
-              </div>
-
-              {/* Card content */}
-              <div className="relative p-8 rounded-3xl">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center space-x-4">
+              {/* Left side - Project image/preview */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
+              >
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-8 h-64 flex items-center justify-center relative overflow-hidden">
+                  {/* Project preview placeholder */}
+                  <div className="text-center space-y-4">
                     <motion.div
-                      whileHover={{ 
-                        rotate: 360,
-                        scale: 1.1,
-                        boxShadow: "0 10px 30px rgba(99, 102, 241, 0.4)"
-                      }}
+                      whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
-                      className={`p-4 rounded-2xl bg-gradient-to-br ${project.gradient} text-white shadow-lg relative overflow-hidden`}
+                      className="w-16 h-16 bg-lime-400 rounded-lg flex items-center justify-center mx-auto"
                     >
-                      <motion.div
-                        className="absolute inset-0 bg-white/20"
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileHover={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                      <div className="relative z-10">{project.icon}</div>
+                      {project.icon}
                     </motion.div>
-                    <div>
-                      <div className="flex items-center gap-3 mb-1">
-                        <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                          transition={{ delay: index * 0.2 + 0.3 }}
-                          className="flex items-center gap-1"
-                        >
-                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                          <span className="text-xs font-medium text-muted-foreground">{project.complexity}</span>
-                        </motion.div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${
-                            project.status === 'Completed' ? 'bg-green-500' : 'bg-blue-500'
-                          }`} />
-                          <span className="text-sm text-muted-foreground">{project.status}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-3 h-3 text-muted-foreground" />
-                          <span className="text-xs text-muted-foreground">{project.year}</span>
-                        </div>
-                        <motion.span
-                          whileHover={{ scale: 1.05 }}
-                          className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium"
-                        >
-                          {project.category}
-                        </motion.span>
-                      </div>
+                    <div className="text-white">
+                      <p className="text-lg font-semibold">{project.title}</p>
+                      <p className="text-sm text-gray-400">{project.category}</p>
                     </div>
                   </div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="p-2 glass rounded-xl relative"
-                  >
-                    <Award className="w-5 h-5 text-primary" />
-                    <motion.div
-                      className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  </motion.div>
-                </div>
-
-                {/* Description */}
-                <motion.p 
-                  className="text-muted-foreground mb-6 leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-                >
-                  {project.description}
-                </motion.p>
-
-                {/* Metrics */}
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  {Object.entries(project.metrics).map(([key, value], mIndex) => {
-                    const metricIcons = {
-                      accuracy: <TrendingUp className="w-4 h-4" />,
-                      users: <Users className="w-4 h-4" />,
-                      performance: <Zap className="w-4 h-4" />,
-                      engagement: <Sparkles className="w-4 h-4" />,
-                      response: <Clock className="w-4 h-4" />,
-                      devices: <Globe className="w-4 h-4" />,
-                      diseases: <Database className="w-4 h-4" />,
-                      speed: <Zap className="w-4 h-4" />,
-                      range: <Globe className="w-4 h-4" />,
-                      uptime: <TrendingUp className="w-4 h-4" />
-                    };
-                    
-                    return (
-                      <motion.div
-                        key={key}
-                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                        animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-                        transition={{ 
-                          duration: 0.5, 
-                          delay: index * 0.2 + 0.5 + mIndex * 0.1,
-                          type: "spring",
-                          stiffness: 200
-                        }}
-                        whileHover={{ 
-                          scale: 1.05, 
-                          y: -2,
-                          boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
-                        }}
-                        className="text-center p-4 glass rounded-xl relative overflow-hidden group cursor-pointer"
-                      >
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"
-                          initial={{ opacity: 0 }}
-                          whileHover={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                        <div className="relative z-10">
-                          <motion.div
-                            className="flex items-center justify-center mb-2"
-                            whileHover={{ rotate: 360 }}
-                            transition={{ duration: 0.6 }}
-                          >
-                            {metricIcons[key as keyof typeof metricIcons] || <TrendingUp className="w-4 h-4" />}
-                          </motion.div>
-                          <div className="text-lg font-bold text-primary mb-1">{value}</div>
-                          <div className="text-xs text-muted-foreground capitalize">{key}</div>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                {/* Features */}
-                <div className="mb-6">
-                  <h4 className="font-semibold mb-3 text-foreground">Key Features:</h4>
-                  <div className="space-y-2">
-                    {project.features.map((feature, fIndex) => (
-                      <motion.div
-                        key={fIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.5, delay: index * 0.2 + 0.7 + fIndex * 0.1 }}
-                        whileHover={{ x: 5 }}
-                        className="flex items-start space-x-3 p-2 rounded-lg hover:bg-primary/5 transition-colors cursor-pointer"
-                      >
-                        <motion.div 
-                          className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mt-2 flex-shrink-0"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: fIndex * 0.3 }}
-                        />
-                        <span className="text-sm text-muted-foreground leading-relaxed">{feature}</span>
-                      </motion.div>
-                    ))}
+                  
+                  {/* Tag */}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-lime-400 text-black px-3 py-1 rounded-full text-xs font-semibold">
+                      {project.status}
+                    </span>
                   </div>
                 </div>
+              </motion.div>
 
-                {/* Technologies */}
-                <div className="mb-8">
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, tIndex) => (
-                      <motion.span
-                        key={tIndex}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.4, delay: index * 0.2 + 0.9 + tIndex * 0.05 }}
-                        whileHover={{ 
-                          scale: 1.1,
-                          backgroundColor: "rgba(99, 102, 241, 0.2)"
-                        }}
-                        className="px-3 py-1 glass rounded-full text-xs font-medium cursor-pointer"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
+              {/* Right side - Project details */}
+              <div className="space-y-6">
+                {/* Project title */}
+                <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                
+                {/* Project description */}
+                <p className="text-gray-300 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                {/* Project info */}
+                <div className="space-y-2">
+                  <h4 className="text-white font-semibold">PROJECT INFO</h4>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-gray-400">Year</span>
+                      <p className="text-white">{project.year}</p>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Role</span>
+                      <p className="text-white">{project.category}</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Action buttons */}
-                <div className="flex space-x-4">
+                <div className="flex gap-4">
                   <motion.button
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: "0 15px 35px rgba(99, 102, 241, 0.4)",
-                      y: -2
-                    }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold shadow-lg group overflow-hidden relative"
+                    className="flex items-center gap-2 px-6 py-3 bg-lime-400 text-black rounded-lg font-semibold hover:bg-lime-300 transition-colors"
                   >
-                    <motion.div
-                      className="absolute inset-0 bg-white/20"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <Play className="w-4 h-4" />
-                    </motion.div>
-                    <span>View Demo</span>
-                    <motion.div
-                      initial={{ x: -10, opacity: 0 }}
-                      whileHover={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.div>
+                    LIVE DEMO
+                    <ArrowRight className="w-4 h-4" />
                   </motion.button>
                   
                   <motion.button
-                    whileHover={{ 
-                      scale: 1.05,
-                      y: -2,
-                      boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
-                    }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 px-6 py-3 glass border border-primary/30 rounded-xl font-semibold hover:bg-primary/10 transition-all group relative overflow-hidden"
+                    className="flex items-center gap-2 px-6 py-3 border border-gray-600 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors"
                   >
-                    <motion.div
-                      className="absolute inset-0 bg-primary/5"
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileHover={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.div
-                      whileHover={{ rotate: 12 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative z-10"
-                    >
-                      <Code className="w-4 h-4" />
-                    </motion.div>
-                    <span className="relative z-10">Source Code</span>
-                    <motion.div
-                      initial={{ x: -10, opacity: 0 }}
-                      whileHover={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative z-10"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </motion.div>
+                    <Code className="w-4 h-4" />
+                    SEE ON GITHUB
                   </motion.button>
                 </div>
               </div>
-
-              {/* Hover glow effect */}
-              <motion.div
-                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `linear-gradient(135deg, ${project.gradient.split(' ')[1]}, ${project.gradient.split(' ')[3]})`,
-                  filter: "blur(20px)",
-                  transform: "scale(1.1)",
-                  zIndex: -1,
-                }}
-              />
             </motion.div>
           ))}
         </div>

@@ -3,12 +3,11 @@ import { motion, AnimatePresence } from "motion/react";
 import { Navigation } from "./components/Navigation";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
+import { Capabilities } from "./components/Capabilities";
 import { Experience } from "./components/Experience";
 import { Projects } from "./components/Projects";
-import { Skills } from "./components/Skills";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { AnimatedBackground } from "./components/AnimatedBackground";
 
 export default function App() {
   useEffect(() => {
@@ -39,9 +38,8 @@ export default function App() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="min-h-screen bg-background text-foreground relative"
+        className="min-h-screen bg-black text-white relative"
       >
-        <AnimatedBackground />
         <Navigation />
         
         <motion.main
@@ -68,6 +66,16 @@ export default function App() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
+            id="capabilities"
+          >
+            <Capabilities />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
             id="experience"
           >
             <Experience />
@@ -81,16 +89,6 @@ export default function App() {
             id="projects"
           >
             <Projects />
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            id="skills"
-          >
-            <Skills />
           </motion.div>
           
           <motion.div
