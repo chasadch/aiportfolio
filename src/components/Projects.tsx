@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { ExternalLink, Github, Bot, Mic, Leaf, Drone, Play, Code, Award } from "lucide-react";
+import { ExternalLink, Github, Bot, Mic, Leaf, Plane, Play, Code, Award } from "lucide-react";
 
 export function Projects() {
   const ref = useRef(null);
@@ -61,7 +61,7 @@ export function Projects() {
     },
     {
       title: "AI Autonomous Drone",
-      icon: <Drone className="w-8 h-8" />,
+      icon: <Plane className="w-8 h-8" />,
       gradient: "from-orange-500 to-red-600",
       description: "Advanced autonomous drone system combining hardware and software for reliable navigation and intelligent decision-making.",
       features: [
