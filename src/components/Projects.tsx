@@ -1,7 +1,8 @@
+import React from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { ExternalLink, Github, Bot, Mic, Leaf, Plane, Play, Code, Award } from "lucide-react";
+import { ExternalLink, Github, Bot, Mic, Leaf, Plane, Play, Code, Award, Zap, Cpu, Database, Globe, Sparkles, ArrowRight, Star, TrendingUp, Users, Clock } from "lucide-react";
 
 export function Projects() {
   const ref = useRef(null);
@@ -29,11 +30,14 @@ export function Projects() {
       ],
       technologies: ["Python", "OpenAI GPT", "Speech Recognition", "gTTS", "Web Scraping"],
       status: "Completed",
-      metrics: { accuracy: "95%", users: "1K+", performance: "Fast" }
+      metrics: { accuracy: "95%", users: "1K+", performance: "Fast" },
+      category: "AI/ML",
+      year: "2024",
+      complexity: "Advanced"
     },
     {
       title: "AI Interactive Portfolio",
-      icon: <Mic className="w-8 h-8" />,
+      icon: <Globe className="w-8 h-8" />,
       gradient: "from-green-500 to-teal-600",
       description: "Created a dynamic portfolio with AI-driven question answering, expressive gestures, and immersive engagement for recruiters.",
       features: [
@@ -43,11 +47,14 @@ export function Projects() {
       ],
       technologies: ["React", "AI/ML", "Voice Recognition", "Cross-platform"],
       status: "Ongoing",
-      metrics: { engagement: "85%", response: "Real-time", devices: "All" }
+      metrics: { engagement: "85%", response: "Real-time", devices: "All" },
+      category: "Web Development",
+      year: "2024",
+      complexity: "Expert"
     },
     {
       title: "Plant Disease Detection",
-      icon: <Leaf className="w-8 h-8" />,
+      icon: <Database className="w-8 h-8" />,
       gradient: "from-emerald-500 to-green-600",
       description: "AI-powered system for plant health maintenance through early disease detection and treatment recommendations.",
       features: [
@@ -57,11 +64,14 @@ export function Projects() {
       ],
       technologies: ["TensorFlow", "EfficientNet", "Flask", "Deep Learning", "Computer Vision"],
       status: "Completed",
-      metrics: { accuracy: "90%", diseases: "38", speed: "2s" }
+      metrics: { accuracy: "90%", diseases: "38", speed: "2s" },
+      category: "Computer Vision",
+      year: "2023",
+      complexity: "Advanced"
     },
     {
       title: "AI Autonomous Drone",
-      icon: <Plane className="w-8 h-8" />,
+      icon: <Cpu className="w-8 h-8" />,
       gradient: "from-orange-500 to-red-600",
       description: "Advanced autonomous drone system combining hardware and software for reliable navigation and intelligent decision-making.",
       features: [
@@ -71,7 +81,10 @@ export function Projects() {
       ],
       technologies: ["Pixhawk", "Computer Vision", "LiDAR", "Path Planning", "Real-time Systems"],
       status: "Completed",
-      metrics: { accuracy: "98%", range: "5km", uptime: "99%" }
+      metrics: { accuracy: "98%", range: "5km", uptime: "99%" },
+      category: "Hardware AI",
+      year: "2023",
+      complexity: "Expert"
     }
   ];
 
@@ -135,12 +148,13 @@ export function Projects() {
                 stiffness: 100
               }}
               whileHover={{ 
-                y: -10, 
-                scale: 1.02,
-                boxShadow: "0 25px 50px rgba(0,0,0,0.2)"
+                y: -15, 
+                scale: 1.03,
+                boxShadow: "0 30px 60px rgba(0,0,0,0.3)",
+                rotateY: 2
               }}
               onHoverStart={() => setActiveProject(index)}
-              className="relative group"
+              className="relative group perspective-1000"
             >
               {/* Card background with gradient border */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 p-0.5">
@@ -155,29 +169,64 @@ export function Projects() {
                     <motion.div
                       whileHover={{ 
                         rotate: 360,
-                        scale: 1.1
+                        scale: 1.1,
+                        boxShadow: "0 10px 30px rgba(99, 102, 241, 0.4)"
                       }}
                       transition={{ duration: 0.6 }}
-                      className={`p-4 rounded-2xl bg-gradient-to-br ${project.gradient} text-white shadow-lg`}
+                      className={`p-4 rounded-2xl bg-gradient-to-br ${project.gradient} text-white shadow-lg relative overflow-hidden`}
                     >
-                      {project.icon}
+                      <motion.div
+                        className="absolute inset-0 bg-white/20"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileHover={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <div className="relative z-10">{project.icon}</div>
                     </motion.div>
                     <div>
-                      <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
-                      <div className="flex items-center gap-2 mt-1">
-                        <div className={`w-2 h-2 rounded-full ${
-                          project.status === 'Completed' ? 'bg-green-500' : 'bg-blue-500'
-                        }`} />
-                        <span className="text-sm text-muted-foreground">{project.status}</span>
+                      <div className="flex items-center gap-3 mb-1">
+                        <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                          transition={{ delay: index * 0.2 + 0.3 }}
+                          className="flex items-center gap-1"
+                        >
+                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                          <span className="text-xs font-medium text-muted-foreground">{project.complexity}</span>
+                        </motion.div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${
+                            project.status === 'Completed' ? 'bg-green-500' : 'bg-blue-500'
+                          }`} />
+                          <span className="text-sm text-muted-foreground">{project.status}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-3 h-3 text-muted-foreground" />
+                          <span className="text-xs text-muted-foreground">{project.year}</span>
+                        </div>
+                        <motion.span
+                          whileHover={{ scale: 1.05 }}
+                          className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium"
+                        >
+                          {project.category}
+                        </motion.span>
                       </div>
                     </div>
                   </div>
 
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="p-2 glass rounded-xl"
+                    className="p-2 glass rounded-xl relative"
                   >
                     <Award className="w-5 h-5 text-primary" />
+                    <motion.div
+                      className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
                   </motion.div>
                 </div>
 
@@ -193,18 +242,58 @@ export function Projects() {
 
                 {/* Metrics */}
                 <div className="grid grid-cols-3 gap-4 mb-6">
-                  {Object.entries(project.metrics).map(([key, value], mIndex) => (
-                    <motion.div
-                      key={key}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: index * 0.2 + 0.5 + mIndex * 0.1 }}
-                      className="text-center p-3 glass rounded-xl"
-                    >
-                      <div className="text-lg font-bold text-primary">{value}</div>
-                      <div className="text-xs text-muted-foreground capitalize">{key}</div>
-                    </motion.div>
-                  ))}
+                  {Object.entries(project.metrics).map(([key, value], mIndex) => {
+                    const metricIcons = {
+                      accuracy: <TrendingUp className="w-4 h-4" />,
+                      users: <Users className="w-4 h-4" />,
+                      performance: <Zap className="w-4 h-4" />,
+                      engagement: <Sparkles className="w-4 h-4" />,
+                      response: <Clock className="w-4 h-4" />,
+                      devices: <Globe className="w-4 h-4" />,
+                      diseases: <Database className="w-4 h-4" />,
+                      speed: <Zap className="w-4 h-4" />,
+                      range: <Globe className="w-4 h-4" />,
+                      uptime: <TrendingUp className="w-4 h-4" />
+                    };
+                    
+                    return (
+                      <motion.div
+                        key={key}
+                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                        animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                        transition={{ 
+                          duration: 0.5, 
+                          delay: index * 0.2 + 0.5 + mIndex * 0.1,
+                          type: "spring",
+                          stiffness: 200
+                        }}
+                        whileHover={{ 
+                          scale: 1.05, 
+                          y: -2,
+                          boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
+                        }}
+                        className="text-center p-4 glass rounded-xl relative overflow-hidden group cursor-pointer"
+                      >
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"
+                          initial={{ opacity: 0 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                        <div className="relative z-10">
+                          <motion.div
+                            className="flex items-center justify-center mb-2"
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.6 }}
+                          >
+                            {metricIcons[key as keyof typeof metricIcons] || <TrendingUp className="w-4 h-4" />}
+                          </motion.div>
+                          <div className="text-lg font-bold text-primary mb-1">{value}</div>
+                          <div className="text-xs text-muted-foreground capitalize">{key}</div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
 
                 {/* Features */}
@@ -257,7 +346,8 @@ export function Projects() {
                   <motion.button
                     whileHover={{ 
                       scale: 1.05,
-                      boxShadow: "0 10px 30px rgba(99, 102, 241, 0.3)"
+                      boxShadow: "0 15px 35px rgba(99, 102, 241, 0.4)",
+                      y: -2
                     }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold shadow-lg group overflow-hidden relative"
@@ -268,17 +358,53 @@ export function Projects() {
                       whileHover={{ x: "100%" }}
                       transition={{ duration: 0.6 }}
                     />
-                    <Play className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Play className="w-4 h-4" />
+                    </motion.div>
                     <span>View Demo</span>
+                    <motion.div
+                      initial={{ x: -10, opacity: 0 }}
+                      whileHover={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.div>
                   </motion.button>
                   
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      y: -2,
+                      boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
+                    }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 px-6 py-3 glass border border-primary/30 rounded-xl font-semibold hover:bg-primary/10 transition-all group"
+                    className="flex items-center space-x-2 px-6 py-3 glass border border-primary/30 rounded-xl font-semibold hover:bg-primary/10 transition-all group relative overflow-hidden"
                   >
-                    <Code className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                    <span>Source Code</span>
+                    <motion.div
+                      className="absolute inset-0 bg-primary/5"
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileHover={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.div
+                      whileHover={{ rotate: 12 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative z-10"
+                    >
+                      <Code className="w-4 h-4" />
+                    </motion.div>
+                    <span className="relative z-10">Source Code</span>
+                    <motion.div
+                      initial={{ x: -10, opacity: 0 }}
+                      whileHover={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative z-10"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </motion.div>
                   </motion.button>
                 </div>
               </div>

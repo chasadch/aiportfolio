@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Navigation } from "./components/Navigation";
 import { Hero } from "./components/Hero";

@@ -1,3 +1,4 @@
+import React from "react";
 import { motion, useScroll } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X, Sparkles } from "lucide-react";

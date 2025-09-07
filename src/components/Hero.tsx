@@ -1,5 +1,6 @@
+import React from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ChevronDown, Sparkles, Code, Brain, Rocket } from "lucide-react";
+import { ChevronDown, Sparkles, Code, Brain, Rocket, Zap, Globe, Cpu, TrendingUp, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Hero() {
@@ -201,30 +202,60 @@ export function Hero() {
             className="flex flex-wrap justify-center gap-4 mb-16"
           >
             {[
-              { icon: <Brain className="w-5 h-5" />, text: "AI/ML Expert", color: "from-primary to-primary/60" },
-              { icon: <Code className="w-5 h-5" />, text: "Full Stack", color: "from-secondary to-secondary/60" },
-              { icon: <Rocket className="w-5 h-5" />, text: "Automation", color: "from-accent to-accent/60" },
+              { icon: <Brain className="w-5 h-5" />, text: "AI/ML Expert", color: "from-blue-500 to-purple-600", description: "Advanced AI solutions" },
+              { icon: <Code className="w-5 h-5" />, text: "Full Stack", color: "from-green-500 to-teal-600", description: "End-to-end development" },
+              { icon: <Rocket className="w-5 h-5" />, text: "Automation", color: "from-orange-500 to-red-600", description: "Process optimization" },
             ].map((skill, index) => (
               <motion.div
                 key={index}
                 whileHover={{ 
                   scale: 1.1, 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(99, 102, 241, 0.3)"
+                  y: -8,
+                  boxShadow: "0 25px 50px rgba(99, 102, 241, 0.4)",
+                  rotateY: 5
                 }}
                 whileTap={{ scale: 0.95 }}
-                className={`glass px-6 py-3 rounded-full flex items-center gap-3 cursor-pointer bg-gradient-to-r ${skill.color}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8 + index * 0.1 }}
+                className={`glass px-6 py-4 rounded-2xl flex items-center gap-3 cursor-pointer bg-gradient-to-r ${skill.color} relative overflow-hidden group`}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ 
+                  delay: 1.8 + index * 0.1,
+                  type: "spring",
+                  stiffness: 200
+                }}
               >
+                <motion.div
+                  className="absolute inset-0 bg-white/10"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileHover={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  className="relative z-10"
                 >
                   {skill.icon}
                 </motion.div>
-                <span className="font-medium">{skill.text}</span>
+                <div className="relative z-10">
+                  <span className="font-medium block">{skill.text}</span>
+                  <motion.span 
+                    className="text-xs opacity-70 block"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {skill.description}
+                  </motion.span>
+                </div>
+                <motion.div
+                  className="relative z-10"
+                  initial={{ x: -10, opacity: 0 }}
+                  whileHover={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Star className="w-4 h-4" />
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -237,23 +268,67 @@ export function Hero() {
             <motion.button
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)"
+                boxShadow: "0 25px 50px rgba(99, 102, 241, 0.5)",
+                y: -3
               }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-semibold text-lg glass glow"
+              className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-semibold text-lg glass glow relative overflow-hidden group"
             >
-              <span className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5" />
+              <motion.div
+                className="absolute inset-0 bg-white/20"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6 }}
+              />
+              <span className="flex items-center gap-2 relative z-10">
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Sparkles className="w-5 h-5" />
+                </motion.div>
                 View My Work
+                <motion.div
+                  initial={{ x: -10, opacity: 0 }}
+                  whileHover={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <TrendingUp className="w-5 h-5" />
+                </motion.div>
               </span>
             </motion.button>
             
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ 
+                scale: 1.05,
+                y: -3,
+                boxShadow: "0 15px 30px rgba(0,0,0,0.1)"
+              }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 glass border border-primary/30 rounded-2xl font-semibold text-lg hover:bg-primary/10 transition-colors"
+              className="px-8 py-4 glass border border-primary/30 rounded-2xl font-semibold text-lg hover:bg-primary/10 transition-colors relative overflow-hidden group"
             >
-              Get In Touch
+              <motion.div
+                className="absolute inset-0 bg-primary/5"
+                initial={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="flex items-center gap-2 relative z-10">
+                <motion.div
+                  whileHover={{ rotate: 12 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Globe className="w-5 h-5" />
+                </motion.div>
+                Get In Touch
+                <motion.div
+                  initial={{ x: -10, opacity: 0 }}
+                  whileHover={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Zap className="w-5 h-5" />
+                </motion.div>
+              </span>
             </motion.button>
           </motion.div>
         </motion.div>
