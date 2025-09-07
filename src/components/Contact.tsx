@@ -18,8 +18,8 @@ export function Contact() {
     {
       icon: <Phone className="w-5 h-5" />,
       label: "Phone",
-      value: "0345119280",
-      href: "tel:0345119280"
+      value: "030411929280",
+      href: "tel:030411929280"
     },
     {
       icon: <MapPin className="w-5 h-5" />,
@@ -36,8 +36,8 @@ export function Contact() {
     {
       icon: <Github className="w-5 h-5" />,
       label: "GitHub",
-      value: "asadarshad",
-      href: "https://github.com/asadarshad"
+      value: "chasadch",
+      href: "https://github.com/chasadch"
     }
   ];
 
