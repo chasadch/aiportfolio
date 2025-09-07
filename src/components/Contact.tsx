@@ -130,12 +130,28 @@ export function Contact() {
               
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 15px 35px rgba(59, 130, 246, 0.4)",
+                  y: -2
+                }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full bg-lime-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-lime-300 transition-colors flex items-center justify-center gap-2"
+                className="relative w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 overflow-hidden group"
               >
-                SUBMIT
-                <Send className="w-4 h-4" />
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <span className="relative z-10">SUBMIT</span>
+                <motion.div
+                  whileHover={{ x: 3, rotate: 5 }}
+                  transition={{ duration: 0.2 }}
+                  className="relative z-10"
+                >
+                  <Send className="w-4 h-4" />
+                </motion.div>
+                <motion.div
+                  className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                />
               </motion.button>
             </form>
           </motion.div>

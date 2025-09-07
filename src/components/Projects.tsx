@@ -199,21 +199,53 @@ export function Projects() {
                 {/* Action buttons */}
                 <div className="flex gap-4">
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: "0 15px 35px rgba(59, 130, 246, 0.4)",
+                      y: -2
+                    }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-6 py-3 bg-lime-400 text-black rounded-lg font-semibold hover:bg-lime-300 transition-colors"
+                    className="relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold overflow-hidden group"
                   >
-                    LIVE DEMO
-                    <ArrowRight className="w-4 h-4" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                    <span className="relative z-10">LIVE DEMO</span>
+                    <motion.div
+                      whileHover={{ x: 3 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative z-10"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.div>
+                    <motion.div
+                      className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                    />
                   </motion.button>
                   
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: "0 15px 35px rgba(255, 255, 255, 0.2)",
+                      y: -2
+                    }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-6 py-3 border border-gray-600 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+                    className="relative flex items-center gap-2 px-6 py-3 border border-gray-600 text-white rounded-lg font-semibold overflow-hidden group bg-gradient-to-r from-gray-800/50 to-gray-900/50"
                   >
-                    <Code className="w-4 h-4" />
-                    SEE ON GITHUB
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-gray-700/50 to-gray-800/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative z-10"
+                    >
+                      <Code className="w-4 h-4" />
+                    </motion.div>
+                    <span className="relative z-10">SEE ON GITHUB</span>
+                    <motion.div
+                      className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300"
+                    />
                   </motion.button>
                 </div>
               </div>
@@ -236,12 +268,19 @@ export function Projects() {
             <motion.button
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 20px 40px rgba(99, 102, 241, 0.3)"
+                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)",
+                y: -2
               }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold"
+              className="relative px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold overflow-hidden group"
             >
-              Start a Project
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              />
+              <span className="relative z-10">Start a Project</span>
+              <motion.div
+                className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+              />
             </motion.button>
           </div>
         </motion.div>

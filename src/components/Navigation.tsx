@@ -44,10 +44,17 @@ export function Navigation() {
                 whileHover={{ 
                   scale: 1.05,
                   y: -2,
+                  boxShadow: "0 8px 25px rgba(59, 130, 246, 0.3)"
                 }}
-                className="text-white hover:text-lime-400 transition-colors duration-300 font-medium tracking-wide"
+                className="relative px-4 py-2 text-white hover:text-blue-400 transition-colors duration-300 font-medium tracking-wide rounded-lg overflow-hidden group"
               >
-                {item.name}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <span className="relative z-10">{item.name}</span>
+                <motion.div
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"
+                />
               </motion.a>
             ))}
           </div>
@@ -55,13 +62,20 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ 
+              scale: 1.1,
+              boxShadow: "0 8px 25px rgba(59, 130, 246, 0.3)"
+            }}
             whileTap={{ scale: 0.9 }}
-            className="md:hidden p-2 text-white"
+            className="relative md:hidden p-2 text-white rounded-lg overflow-hidden group"
           >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            />
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.3 }}
+              className="relative z-10"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.div>
@@ -94,10 +108,19 @@ export function Navigation() {
                   delay: isOpen ? index * 0.1 : 0 
                 }}
                 onClick={() => setIsOpen(false)}
-                whileHover={{ x: 10 }}
-                className="block text-white hover:text-lime-400 transition-colors duration-200 font-medium"
+                whileHover={{ 
+                  x: 10,
+                  scale: 1.02
+                }}
+                className="relative block px-4 py-2 text-white hover:text-blue-400 transition-colors duration-200 font-medium rounded-lg overflow-hidden group"
               >
-                {item.name}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <span className="relative z-10">{item.name}</span>
+                <motion.div
+                  className="absolute left-0 top-0 w-0 h-full bg-blue-400/20 group-hover:w-1 transition-all duration-300"
+                />
               </motion.a>
             ))}
           </div>
